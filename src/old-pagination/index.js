@@ -32,12 +32,6 @@ export default {
         nextAvaliable() {
             return this.currentPage < this.pageCount;
         },
-        prevIgnored() {
-            return this.pageCount > this.maxPages && this.currentPage >= this.maxPages - 1;
-        },
-        nextIgnored() {
-            return this.pageCount > this.maxPages && this.currentPage <= this.pageCount - (this.maxPages - 4);
-        }
     },
     data() {
         return {
@@ -53,6 +47,7 @@ export default {
         currentPage(val) {
             if (this.currentChange) {
                 this.currentChange(val);
+                console.log('TEST CURRENT PAGE' + val);
             }
         },
         sizeChange(val) {
@@ -85,27 +80,5 @@ export default {
             this.jumpPage = num;
             this.changePage(num);
         },
-        isHidden(num) {
-            if (num != 1 && num != this.pageCount) {
-                let distance = Math.floor((this.maxPages - 3) / 2);
-                if (this.prevIgnored && num < this.currentPage) {
-                    return num < this.currentPage - distance;
-                }
-                if (this.nextIgnored && num > this.currentPage) {
-                    return num > this.currentPage + distance;
-                }
-            }
-            return false;
-        },
-        isShow(num) {
-            if (num == 1 || num == this.pageCount) {
-                return true;
-            }
-            if (this.currentPage > this.maxPages - 3 &&
-                this.currentPage < this.pageCount - (this.maxPages - 4) &&
-                num >= this.currentPage - 2 &&
-                num <= this.currentPage + 2) {
-            }
-        }
     }
 }
