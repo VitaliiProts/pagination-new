@@ -1,16 +1,16 @@
 <template>
     <div class='pagination'>
-        <div class='total'>total: {{total}}</div>
+        <div class='total'>Total {{total}}</div>
         <ul class='pager'>
             <li :class='["arrow",{avaliable:prevAvaliable}]' @click='prevPage'>prev</li>
-            <li v-for='num in pageCount' @click='changePage(num)' :class='{active:currentPage==num}'>
+            <li v-show='!isHidden(num)' v-for='num in pageCount' @click='changePage(num)' :class='{active:currentPage==num}'>
                 {{num}}
             </li>
             <li :class='["arrow",{avaliable:nextAvaliable}]' @click='nextPage'>next</li>
         </ul>
         <div class='jump'>
-            <span>前往</span>
-            <input type="text" v-model='jumpPage' @keyup.enter="jumpToPage(jumpPage)">
+            <span>page: </span>
+            <input type="number" v-model='jumpPage' @keyup.enter="jumpToPage(jumpPage)">
         </div>
     </div>
 </template>

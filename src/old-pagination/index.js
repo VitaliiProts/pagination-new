@@ -11,9 +11,13 @@ export default {
         },
         pageSizes: {
             type: Array,
-            default () {
+            default() {
                 return [10, 20, 30, 40, 50, 100];
             }
+        },
+        layOut: {
+            type: String,
+            default: 'prev,pager,next,jumper,total'
         },
         sizeChange: Function,
         currentChange: Function
@@ -81,5 +85,27 @@ export default {
             this.jumpPage = num;
             this.changePage(num);
         },
+        isHidden(num) {
+            if (num != 1 && num != this.pageCount) {
+                let distance = Math.floor((this.maxPages - 3) / 2);
+                if (this.prevIgnored && num < this.currentPage) {
+                    return num < this.currentPage - distance;
+                }
+                if (this.nextIgnored && num > this.currentPage) {
+                    return num > this.currentPage + distance;
+                }
+            }
+            return false;
+        },
+        isShow(num) {
+            if (num == 1 || num == this.pageCount) {
+                return true;
+            }
+            if (this.currentPage > this.maxPages - 3 &&
+                this.currentPage < this.pageCount - (this.maxPages - 4) &&
+                num >= this.currentPage - 2 &&
+                num <= this.currentPage + 2) {
+            }
+        }
     }
 }

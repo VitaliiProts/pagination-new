@@ -165,8 +165,6 @@ storiesOf('Grid', module)
                   },
               ],
           },
-          itemPerPage: 1,
-          currentPage: 2,
       };
   },
     components: { VGrid, VPagination }
