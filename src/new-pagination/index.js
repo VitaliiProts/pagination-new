@@ -1,52 +1,52 @@
 export default {
+  props: {
+    total: {
+      type: Number,
+    }
+  },
   data() {
     return {
-        jumpPage: 1,
-        currentPage: this.currentPage,
-    };
-  },
-  props: {
-    currentPage: {
-      type: Number,
-    },
-    itemPerPage: {
-      type: Number,
-    },
-    total: {
-        type: Number,
+      currentPage: 1,
+      pageSize: 10,
+      jumpPage: 1,
     }
-  },
-  computed: {
-      pageCount() {
-          return this.total ? Math.ceil(this.total / this.itemPerPage) : 1;
-      },
   },
   methods: {
-      currentChange(val) {
-        this.$emit("update:currentPage", val);
-    },
-      sizeChange(val) {
-        this.$emit("update:itemPerPage", val);
-    },
-      prevPage() {
+    currentChangePrev(val) {
+      this.$emit('update:currentPage', val);
+      if (this.prevAvaliable) {
         this.currentPage--;
+      }
     },
-      nextPage() {
+    currentChangeNext(val) {
+      this.$emit('update:currentPage', val);
+      if (this.nextAvaliable) {
         this.currentPage++;
-      },
-    changePage(num) {
-        this.currentPage = num;
+      }
     },
-    jumpToPage(num) {
-        if (num > this.pageCount) {
-            num = this.pageCount;
-        }
-        if (num < 1) {
-            num = 1;
-        }
-        this.jumpPage = num;
-        this.sizeChange(num);
-        this.currentChange(num);
-    }
+    changePage(num) {
+      this.currentPage = num;
   },
+    jumpToPage(num) {
+      if (num > this.pageCount) {
+          num = this.pageCount;
+      }
+      if (num < 1) {
+          num = 1;
+      }
+      this.jumpPage = num;
+      this.changePage(num);
+  },
+  },
+  computed: {
+    pageCount() {
+      return this.total ? Math.ceil(this.total / this.pageSize) : 1;
+    },
+    prevAvaliable() {
+      return this.currentPage > 1;
+    },
+    nextAvaliable() {
+      return this.currentPage < this.pageCount;
+  },
+  }
 };

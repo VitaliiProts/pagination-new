@@ -4,7 +4,6 @@ import NewPagination from '../new-pagination/NewPagination.vue';
 export default {
     data() {
         return {
-            currentPage: 1,
             itemPerPage: 2,
         };
     },
@@ -13,6 +12,9 @@ export default {
           type: Array,
           required: true,
       },
+      currentPage: {
+          type: Number,
+      }
   },
   methods: {
     changePage(val) {

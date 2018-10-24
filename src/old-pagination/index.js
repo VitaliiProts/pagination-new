@@ -5,10 +5,6 @@ export default {
             default: 10
         },
         total: Number,
-        current: {
-            type: Number,
-            default: 1
-        },
         pageSizes: {
             type: Array,
             default() {
@@ -39,9 +35,6 @@ export default {
             jumpPage: 1,
             maxPages: 7
         }
-    },
-    created() {
-        this.currentPage = this.current;
     },
     watch: {
         currentPage(val) {
