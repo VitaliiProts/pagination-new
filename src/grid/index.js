@@ -5,6 +5,7 @@ export default {
     data() {
         return {
             itemPerPage: 2,
+            currentPage: 2,
         };
     },
   props: {
@@ -12,9 +13,6 @@ export default {
           type: Array,
           required: true,
       },
-      currentPage: {
-          type: Number,
-      }
   },
   methods: {
     changePage(val) {

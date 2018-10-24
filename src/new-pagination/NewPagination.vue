@@ -1,9 +1,12 @@
 <template>
     <section>
        <span>{{ `Current page: ${currentPage}` }}</span>
+       <button>First page</button>
        <button @click="currentChangePrev()">Prev</button>
-       <input type="text" v-model='jumpPage' @keyup.enter="jumpToPage(jumpPage)">
+       <input type="text" ref="input" :value="jumpPage" @keyup.enter="jumpToPage(jumpPage)">
        <button @click="currentChangeNext()">Next</button>
+       <button>Last Page</button>
+       <span>{{ `Total: ${total}` }}</span>
     </section>
 </template>
 <script src='./index.js'></script>
