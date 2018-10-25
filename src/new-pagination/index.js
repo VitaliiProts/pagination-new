@@ -22,9 +22,6 @@ export default {
       const val = this.currentPage + 1;
       this.$emit("update:currentPage", val <= this.pageCount ? val : this.pageCount);
     },
-    changePage(num) {
-      this.currentPage = num;
-    },
     jumpToPage(num) {
       if (num > this.pageCount) {
         num = this.pageCount;
@@ -33,7 +30,7 @@ export default {
         num = 1;
       }
       this.jumpPage = num;
-      this.changePage(num);
+      this.$emit("update:currentPage", parseInt(num));
     }
   },
   computed: {

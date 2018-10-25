@@ -5,7 +5,7 @@ export default {
     data() {
         return {
             itemPerPage: 2,
-            currentPage: 2,
+            currentPage: 1,
         };
     },
   props: {
