@@ -6,6 +6,7 @@ export default {
         return {
             itemPerPage: 2,
             currentPage: 1,
+            total: this.data.length,
         };
     },
   props: {
