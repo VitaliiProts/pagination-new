@@ -12,7 +12,7 @@ export default {
   },
   data() {
     return {
-      selected: 10,
+      selected: 1,
       jumpPage: 1,
       options: [
         {
@@ -64,25 +64,14 @@ export default {
       this.jumpPage = num;
       this.$emit('update:currentPage', parseInt(num, 10));
     },
-    onChangeSelected(e) {
-      if (e.target.value === '1') {
-        this.$emit('update:itemPerPage', 1);
-      } else if (e.target.value === '2') {
-        this.$emit('update:itemPerPage', 2);
-      } else if (e.target.value === '3') {
-        this.$emit('update:itemPerPage', 3);
-      }
+    changeSelected(val) {
+      this.selected = val;
+      this.$emit('update:itemPerPage', val);
     },
   },
   computed: {
     pageCount() {
       return this.total ? Math.ceil(this.total / this.itemPerPage) : 1;
-    },
-    isInFirstPage() {
-      return this.currentPage === 1;
-    },
-    isInLastPage() {
-      return this.currentPage === this.total;
     },
   },
 };

@@ -6,7 +6,7 @@
      <br>
     <div>
         <br>
-        <new-pagination :total.sync="total" :currentPage.sync="currentPage"></new-pagination>
+        <new-pagination :total.sync="total" :currentPage.sync="currentPage" :itemPerPage.sync="itemPerPage"></new-pagination>
     </div>
 </section>
 </template>

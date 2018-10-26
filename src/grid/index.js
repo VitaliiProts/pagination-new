@@ -4,7 +4,7 @@ import NewPagination from '../new-pagination/NewPagination.vue';
 export default {
     data() {
         return {
-            itemPerPage: 2,
+            itemPerPage: 1,
             currentPage: 1,
             total: this.data.length,
         };
