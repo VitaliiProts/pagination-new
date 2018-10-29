@@ -24,7 +24,7 @@ yarn
 npm run dev
 ```
 
-## Stoybook
+## Storybook
 ``` bash
 # serve with hot reload at http://localhost:9001
 npm run storybook
