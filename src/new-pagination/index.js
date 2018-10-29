@@ -12,20 +12,20 @@ export default {
   },
   data() {
     return {
-      selected: 1,
+      selected: 10,
       jumpPage: 1,
-      options: [
+      ippOptions: [
         {
-          value: 1,
-          text: '1',
+          value: 10,
+          text: '10',
         },
         {
-          value: 2,
-          text: '2',
+          value: 20,
+          text: '50',
         },
         {
-          value: 3,
-          text: '3',
+          value: 50,
+          text: '50',
         },
         {
           value: 100,
@@ -36,13 +36,11 @@ export default {
   },
   methods: {
     currentChangePrev() {
-      const val = this.currentPage - 1;
-      this.$emit('update:currentPage', val >= 1 ? val : 1);
+      this.$emit('update:currentPage', this.currentPage - 1);
       return this.jumpPage > 1 ? this.jumpPage-- : 1;
     },
     currentChangeNext() {
-      const val = this.currentPage + 1;
-      this.$emit('update:currentPage', val <= this.pageCount ? val : this.pageCount);
+      this.$emit('update:currentPage', this.currentPage + 1);
       return this.jumpPage < this.pageCount ? this.jumpPage++ : this.pageCount;
     },
     onClickFirstPage() {
@@ -50,16 +48,13 @@ export default {
       this.jumpPage = 1;
     },
     onClickLastPage() {
-      this.$emit('update:currentPage', this.total);
+      this.$emit('update:currentPage', this.pageCount);
       this.jumpPage = this.total;
     },
     jumpToPage(val) {
       let num = val;
       if (num > this.pageCount) {
         num = this.pageCount;
-      }
-      if (num < 1) {
-        num = 1;
       }
       this.jumpPage = num;
       this.$emit('update:currentPage', parseInt(num, 10));
