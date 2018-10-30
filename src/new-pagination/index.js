@@ -63,19 +63,16 @@ export default {
       this.selected = val;
       this.$emit('update:itemPerPage', val);
     },
+    filterInput(e) {
+      var charCode = e.charCode;
+        if (charCode != 43 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+          e.preventDefault();
+      }
+    }
   },
   computed: {
     pageCount() {
       return this.total ? Math.ceil(this.total / this.itemPerPage) : 1;
     },
-  },
-  watch: {
-    jumpPage(val) {
-      let a = /^[0-9]*$/;
-      if (val.match(a)) {
-        return true;
-      }
-      this.jumpPage = '';
-    }
   },
 };

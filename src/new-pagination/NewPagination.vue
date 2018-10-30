@@ -20,7 +20,8 @@
         </button>
         <section class="pagination-input-container">
             <span>{{ 'page' }}</span>
-            <input ref="input" class="pagination-input" type="text" v-model="jumpPage" @keyup.enter="jumpToPage(jumpPage)">
+            <input ref="input" class="pagination-input" type="text" v-model="jumpPage" @keyup.enter="jumpToPage(jumpPage)"
+            @keypress="filterInput">
             <span>{{ `from ${pageCount}` }}</span>
         </section>
         <button @click="currentChangeNext" :class="[{disabled: currentPage === pageCount}, 'pagination-button']" :disabled="currentPage === pageCount">
