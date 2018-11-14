@@ -12,7 +12,7 @@ Vue.use(ElementUI, { locale });
 
 function loadStories() {
   // You can require as many stories as you need.
-  require('../src/stories');
+  require('../src/grid/stories');
 }
 
 configure(loadStories, module);

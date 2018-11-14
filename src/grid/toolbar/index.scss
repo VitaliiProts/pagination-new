@@ -1,0 +1,173 @@
+@mixin align-icons($content, $size, $m-left) {
+  content: $content;
+  font-family: 'FontAwesome';
+  position: absolute;
+  top: 50%;
+  margin-top: -11px;
+  width: 16px;
+  height: 16px;
+  font-size: $size;
+  left: 50%;
+  margin-left: $m-left;
+}
+
+.yaware-grid-toolbar {
+  display: flex;
+  flex-direction: column;
+  padding: 7px 7px;
+  position: relative;
+  border: 1px solid #ccc;
+  background-color: #e8e8e8;
+  &__block {
+    display: flex;
+    flex-wrap: wrap;
+    &--service,
+    &--button {
+      margin-right: 10px;
+      padding-right: 10px;
+      position: relative;
+      &:after {
+        content: '';
+        width: 1px;
+        height: 20px;
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 6px;
+        background-color: #ccc;
+      }
+    }
+  }
+  &__expanded {
+    margin-top: 3px;
+    display: flex;
+    flex-wrap: wrap;
+    &--search,
+    &--date,
+    &--status,
+    &--priority {
+      margin-right: 10px;
+      padding-right: 10px;
+      position: relative;
+      &:after {
+        content: '';
+        width: 1px;
+        height: 20px;
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 6px;
+        background-color: #ccc;
+      }
+    }
+  }
+  &__button {
+    height: 32px;
+    display: flex;
+    margin-bottom: 7px;
+    position: relative;
+    font-weight: 400;
+    border: 1px solid #ccc;
+    background: #fbfbfb;
+    border-radius: 3px;
+    color: #444;
+    cursor: pointer;
+    margin-right: 7px;
+    padding: 0 10px 0 34px;
+    &:focus {
+      border-color: #337ab7;
+    }
+    &--refresh {
+      width: 32px;
+      height: 32px;
+      padding: 0 5px;
+      position: relative;
+      &:before {
+        @include align-icons('\f021', 1.33em, -8px);
+        color: #44778b;
+      }
+    }
+    &--filters {
+      position: relative;
+      &:before {
+        @include align-icons('\f0b0', 1.33em, -30px);
+        color: #44778b;
+      }
+    }
+    &--clear-filters {
+      width: 32px;
+      height: 32px;
+      padding: 0 5px;
+      position: relative;
+      &:before {
+        @include align-icons('\f0b0', 1.33em, -8px);
+        color: #44778b;
+      }
+      &:after {
+        @include align-icons('\f055', 10px, -8px);
+        margin-top: -1px;
+        left: 75%;
+        color: red;
+      }
+    }
+    &--add-project {
+      position: relative;
+      &:before {
+        @include align-icons('\f080', 1.33em, -60px);
+        color: #44778b;
+      }
+    }
+    &--add-task {
+      position: relative;
+      &:before {
+        @include align-icons('\f055', 1.33em, -56px);
+        color: #44778b;
+      }
+    }
+    &--csv {
+      position: relative;
+      &:before {
+        @include align-icons('\f093', 1.33em, -184px);
+        color: #4f9e37;
+        z-index: 1;
+        margin-top: -15px;
+      }
+    }
+    &--xls {
+      position: relative;
+      &:before {
+        @include align-icons('\f019', 1.33em, -56px);
+        color: #4f9e37;
+      }
+    }
+    &--collapse-expand-all {
+      position: relative;
+      padding: 0 10px;
+    }
+  }
+}
+
+.yaware-expanded-toolbar {
+  &__search,
+  &__date {
+    margin-right: 7px;
+    line-height: 32px;
+    font-weight: 400;
+    font-size: 13px;
+    cursor: default;
+    color: #444;
+  }
+}
+
+.el-input {
+  width: 180px;
+}
+
+.yaware2-date-picker {
+  height: 30px !important;
+}
+
+.yaware2-predefined-date-picker .yaware2-select .ms-choice {
+  height: 32px !important;
+  line-height: 32px !important;
+}
