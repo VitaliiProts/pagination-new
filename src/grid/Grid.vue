@@ -1,40 +1,20 @@
 <template>
     <section>
-        <el-table
+        <y-table
                 :data="data"
-                highlight-current-row
-                stripe
-                header-cell-class-name="yaware-el-table__header"
-                cell-class-name="yaware-el-table__sell"
+                :columns="columns"
+                :name="name"
+                :hiddenColumns="hiddenColumns"
         >
-            <el-table-column v-if="$slots.expand" type="expand">
-                <template slot-scope="row">
-                    <slot name="expand"></slot>
-                </template>
-            </el-table-column>
 
-            <el-table-column
-                    v-for="column in columns"
-                    :key="column.prop"
-                    v-bind="column"
-            >
-                <template slot-scope="{ row }">
-                    <slot v-if="$scopedSlots[`${column.prop}-column-template`]"
-                          :name="`${column.prop}-column-template`"
-                          :row="row"
-                    >
-                    </slot>
-                    <span v-else>
-                        {{ row[column.prop] }}
-                    </span>
-                </template>
-            </el-table-column>
-        </el-table>
+        </y-table>
         <y-pagination
                 :total="100"
                 :currentPage.sync="currentPage"
                 :itemPerPage.sync="itemPerPage"
-        ></y-pagination>
+        >
+
+        </y-pagination>
     </section>
 </template>
 <script src="./index.js"></script>

@@ -1,23 +1,25 @@
 export default {
-  props: {
-      expanded: {
-          type: Boolean,
-      },
-      exportTypes: {
-          type: Array,
-          default: () => ['csv', 'pdf', 'xls'],
-      },
-      items: {
-          type: [Object, Array],
-      },
-  },
   data() {
-      return {};
+    return {
+      show: this.expanded
+    };
+  },
+  props: {
+    exportTypes: {
+      type: Array,
+      default: [
+        { item: "csv", icon: "csv" },
+        { item: "pdf", icon: "pdf" },
+        { item: "xls", icon: "xls" }
+      ]
+    },
+    expanded: {
+      type: Boolean
+    }
   },
   methods: {
-      changeFilters() {
-          this.$emit('update:expanded', this.expanded !== true);
-          console.log('CLICK');
-      },
+    expand() {
+      this.$emit("update:expanded", (this.show = !this.show));
+    }
   },
 };
