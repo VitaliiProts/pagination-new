@@ -13,19 +13,25 @@
                         >
                             {{ 'Filters' }}
                         </button>
-                        <section v-else >
+                        <section v-else>
                             <el-popover
-                                    popper-class="test"
-                                    ref="popover"
-                                    placement="right"
-                                    width="300"
-                                    trigger="click">
-                                <h1>{{ 'TEST' }}</h1>
+                                ref="popover"
+                                placement="right"
+                                width="240"
+                                trigger="click"
+                            >
+                                <b>{{ 'Hide columns:' }}</b>
+                                <el-checkbox-group v-model="checked">
+                                    <el-checkbox v-for="column in columns" :label="column.prop" :key="column.prop">
+                                        {{ column.label }}
+                                    </el-checkbox>
+                                </el-checkbox-group>
                             </el-popover>
 
                             <button class=" yaware-grid-toolbar__button" v-popover:popover>
-                                <i class="fa fa-columns" aria-hidden="true"></i>
-                        </button></section>
+                                <i class="fa fa-columns"></i>
+                            </button>
+                        </section>
                     </section>
                     <button class="yaware-grid-toolbar__button yaware-grid-toolbar__button--clear-filters"
                             title="Clear Filters">

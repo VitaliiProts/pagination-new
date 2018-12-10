@@ -7,6 +7,9 @@ export default {
     data: {
       type: Array,
       required: true
+    },
+    hiddenColumns: {
+      type: Array
     }
   }
 };

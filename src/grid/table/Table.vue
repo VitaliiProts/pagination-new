@@ -6,29 +6,14 @@
             header-cell-class-name="yaware-el-table__header"
             cell-class-name="yaware-el-table__sell"
     >
-        <el-table-column v-if="$slots.expand" type="expand">
+        <el-table-column v-if="$slots.expanded" type="expand">
             <template slot-scope="row">
-                <slot name="expand"></slot>
+                <slot name="expanded"></slot>
             </template>
         </el-table-column>
 
-        <el-table-column
-                v-for="column in columns"
-                :key="column.prop"
-                v-bind="column"
-        >
-            <template slot-scope="{ row }">
-                <slot v-if="$scopedSlots[`${column.prop}-column-template`]"
-                      :name="`${column.prop}-column-template`"
-                      :row="row"
-                >
-                </slot>
-                <span v-else>
-                        {{ row[column.prop] }}
-                    </span>
-            </template>
-        </el-table-column>
+        <slot name="custom-column-template"></slot>
     </el-table>
 </template>
 <script src="./index.js"></script>
-<style src="./index.scss" lang="scss"></style>
+<style src="./index.scss" scoped></style>

@@ -1,30 +1,60 @@
-import YPagination from "./pagination/Pagination.vue";
-import YTable from "./table/Table.vue";
+import YPagination from './pagination/Pagination.vue';
+import YToolbar from './toolbar/Toolbar.vue';
+import YTable from './table/Table.vue';
 
 export default {
   data() {
     return {
       itemPerPage: 10,
       currentPage: 1,
-      hiddenColumns: []
+      expanded: false,
+      hiddenColumns: [],
     };
   },
   props: {
-    hiddenColumns: {
-      type: Array,
-      required: false
-    },
     name: {
-      required: true
+      type: String,
+      required: true,
+    },
+    showToolbar: {
+      type: Boolean,
     },
     columns: {
       type: Array,
-      required: true
+      required: true,
     },
     data: {
       type: Array,
-      required: true
+      required: true,
+    },
+    exportTypes: {
+      type: Array,
+      default: () => [{ item: 'csv', icon: 'csv' }, { item: 'xls', icon: 'xls' }],
+    },
+  },
+  computed: {
+    filteredEvents() {
+      return this.columns.filter(column => {
+        const filterHiddenColumns = !this.hiddenColumns.includes(column.prop);
+        return filterHiddenColumns;
+      });
+    },
+  },
+  mounted() {
+    const visibleColumns = localStorage.getItem(this.name);
+    if (visibleColumns) {
+      try {
+        this.hiddenColumns = JSON.parse(visibleColumns);
+      } catch (e) {
+        localStorage.removeItem(this.name);
+      }
     }
   },
-  components: { YPagination, YTable }
+  watch: {
+    hiddenColumns() {
+      const parsed = JSON.stringify(this.hiddenColumns);
+      localStorage.setItem(this.name, parsed);
+    },
+  },
+  components: { YPagination, YToolbar, YTable },
 };
