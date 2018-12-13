@@ -1,14 +1,14 @@
 <template>
-    <section class="yaware-grid-toolbar">
+    <section class="y-grid-toolbar">
 
-        <section class="yaware-grid-toolbar__block">
+        <section class="y-grid-toolbar__block">
             <slot name="main-buttons">
-                <section class="yaware-grid-toolbar__block yaware-grid-toolbar__block--service">
-                    <button class="yaware-grid-toolbar__button yaware-grid-toolbar__button--refresh" title="Refresh"></button>
+                <section class="y-grid-toolbar__block y-grid-toolbar__block--service">
+                    <button class="y-grid-toolbar__button y-grid-toolbar__button--refresh" title="Refresh"></button>
                     <section>
                         <button v-if="$slots['expanded-toolbar'] || $scopedSlots['expanded-toolbar']"
                                 @click="expand"
-                                class="yaware-grid-toolbar__button yaware-grid-toolbar__button--filters"
+                                class="y-grid-toolbar__button y-grid-toolbar__button--filters"
                                 title="Filters"
                         >
                             {{ 'Filters' }}
@@ -28,23 +28,23 @@
                                 </el-checkbox-group>
                             </el-popover>
 
-                            <button class=" yaware-grid-toolbar__button" v-popover:popover>
+                            <button class=" y-grid-toolbar__button" v-popover:popover>
                                 <i class="fa fa-columns"></i>
                             </button>
                         </section>
                     </section>
-                    <button class="yaware-grid-toolbar__button yaware-grid-toolbar__button--clear-filters"
+                    <button class="y-grid-toolbar__button y-grid-toolbar__button--clear-filters"
                             title="Clear Filters">
                     </button>
                 </section>
             </slot>
-            <section class="yaware-grid-toolbar__block">
+            <section class="y-grid-toolbar__block">
                 <slot name="custom-buttons"></slot>
             </section>
-            <section class="yaware-grid-toolbar__block yaware-grid-toolbar__block--export">
+            <section class="y-grid-toolbar__block y-grid-toolbar__block--export">
                 <slot name="export-types">
                     <button v-for="exports in exportTypes"
-                            :class="['yaware-grid-toolbar__button', `yaware-grid-toolbar__button--${exports.icon}`]"
+                            :class="['y-grid-toolbar__button', `y-grid-toolbar__button--${exports.icon}`]"
                     >
                         {{ 'Export to ' + exports.item }}
                     </button>
@@ -52,7 +52,7 @@
             </section>
         </section>
 
-        <section v-if="expanded" class="yaware-grid-toolbar__expanded">
+        <section v-if="expanded" class="y-grid-toolbar__expanded">
             <slot name="expanded-toolbar"></slot>
         </section>
     </section>

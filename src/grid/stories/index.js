@@ -6,7 +6,7 @@ import YTable from "../table/Table.vue";
 storiesOf("Lib/Grid", "GridTable")
   .add("Table", () => ({
     template: `
-    <section class="yaware-panel__block">
+    <section class="y-panel__block">
         <y-grid :columns="columns.projects" 
                 :data="data.projects"
                 :showToolbar="true"
@@ -176,15 +176,15 @@ storiesOf("Lib/Grid", "GridTable")
     template: `
                 <s-viewport :width="1700">
                     <s-container header="Toolbar collapsed filters" :width="1600">
-                        <section class="yaware-panel__block">
+                        <section class="y-panel__block">
                             <y-toolbar :expanded.sync="expanded" :exportTypes="exportTypes">
                                 <template slot="expanded-toolbar">
                                     <h1>This is expanded toolbar</h1>
                                 </template>
                                 <template slot="custom-buttons">
-                                    <button class="yaware-grid-toolbar__button yaware-grid-toolbar__button--add-project"
+                                    <button class="y-grid-toolbar__button y-grid-toolbar__button--add-project"
                                             title="Add New Project">Add New Project</button>
-                                    <button class="yaware-grid-toolbar__button yaware-grid-toolbar__button--add-task"
+                                    <button class="y-grid-toolbar__button y-grid-toolbar__button--add-task"
                                             title="Add New Task">Add New Task</button>
                                 </template>
                             </y-toolbar>
@@ -207,15 +207,15 @@ storiesOf("Lib/Grid", "GridTable")
     template: `
                 <s-viewport :width="1700">
                     <s-container header="Toolbar expanded filters" :width="1600">
-                        <section class="yaware-panel__block">
+                        <section class="y-panel__block">
                             <y-toolbar :expanded.sync="expanded" :exportTypes="exportTypes">
                                 <template slot="expanded-toolbar">
                                     <h1>This is expanded toolbar</h1>
                                 </template>
                                 <template slot="custom-buttons">
-                                    <button class="yaware-grid-toolbar__button yaware-grid-toolbar__button--add-project"
+                                    <button class="y-grid-toolbar__button y-grid-toolbar__button--add-project"
                                             title="Add New Project">Add New Project</button>
-                                    <button class="yaware-grid-toolbar__button yaware-grid-toolbar__button--add-task"
+                                    <button class="y-grid-toolbar__button y-grid-toolbar__button--add-task"
                                             title="Add New Task">Add New Task</button>
                                 </template>
                             </y-toolbar>
@@ -238,7 +238,7 @@ storiesOf("Lib/Grid", "GridTable")
     template: `
                 <s-viewport :width="1700">
                     <s-container header="Toolbar no filters" :width="1600">
-                        <section class="yaware-panel__block">
+                        <section class="y-panel__block">
                             <y-toolbar :expanded.sync="expanded" :exportTypes="exportTypes">
                                 <template slot="custom-buttons"><section></section></template>
                             </y-toolbar>
@@ -262,15 +262,15 @@ storiesOf("Lib/Grid", "GridTable")
     template: `
                 <s-viewport :width="1700">
                     <s-container header="Toolbar no exports" :width="1600">
-                        <section class="yaware-panel__block">
+                        <section class="y-panel__block">
                             <y-toolbar :expanded.sync="expanded" :exportTypes="[]">
                             <template slot="expanded-toolbar">
                                 <h1>This is expanded toolbar</h1>
                             </template>
                             <template slot="custom-buttons">
-                                <button class="yaware-grid-toolbar__button yaware-grid-toolbar__button--add-project"
+                                <button class="y-grid-toolbar__button y-grid-toolbar__button--add-project"
                                         title="Add New Project">Add New Project</button>
-                                <button class="yaware-grid-toolbar__button yaware-grid-toolbar__button--add-task"
+                                <button class="y-grid-toolbar__button y-grid-toolbar__button--add-task"
                                         title="Add New Task">Add New Task</button>
                             </template>
                             </y-toolbar>

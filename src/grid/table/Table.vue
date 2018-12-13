@@ -3,8 +3,8 @@
             :data="data"
             highlight-current-row
             stripe
-            header-cell-class-name="yaware-el-table__header"
-            cell-class-name="yaware-el-table__sell"
+            header-cell-class-name="y-el-table__header"
+            cell-class-name="y-el-table__sell"
     >
         <el-table-column v-if="$slots.expanded" type="expand">
             <template slot-scope="row">
