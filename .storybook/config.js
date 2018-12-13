@@ -4,6 +4,7 @@ import ElementUI from 'element-ui'
 import Vue from 'vue';
 import Vuex from 'vuex'; // Vue plugins
 import '../node_modules/element-theme-chalk/src/index.scss';
+import 'font-awesome/css/font-awesome.min.css';
 import locale from 'element-ui/lib/locale/lang/en';
 
 // Install Vue plugins.
