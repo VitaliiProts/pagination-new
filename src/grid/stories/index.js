@@ -1,7 +1,6 @@
 import { storiesOf } from "@storybook/vue";
 import YGrid from "./../Grid.vue";
 import YToolbar from "../toolbar/Toolbar.vue";
-import YTable from "../table/Table.vue";
 
 storiesOf("Lib/Grid", "GridTable")
   .add("Table", () => ({
@@ -170,118 +169,118 @@ storiesOf("Lib/Grid", "GridTable")
         }
       };
     },
-    components: { YGrid, YToolbar, YTable }
-  }))
-  .add("Toolbar collapsed filters", () => ({
-    template: `
-                <s-viewport :width="1700">
-                    <s-container header="Toolbar collapsed filters" :width="1600">
-                        <section class="y-panel__block">
-                            <y-toolbar :expanded.sync="expanded" :exportTypes="exportTypes">
-                                <template slot="expanded-toolbar">
-                                    <h1>This is expanded toolbar</h1>
-                                </template>
-                                <template slot="custom-buttons">
-                                    <button class="y-grid-toolbar__button y-grid-toolbar__button--add-project"
-                                            title="Add New Project">Add New Project</button>
-                                    <button class="y-grid-toolbar__button y-grid-toolbar__button--add-task"
-                                            title="Add New Task">Add New Task</button>
-                                </template>
-                            </y-toolbar>
-                        </section>
-                    </s-container>
-                </s-viewport>
-            `,
-    data() {
-      return {
-        expanded: false,
-        exportTypes: [
-          { item: "csv", icon: "csv" },
-          { item: "xls", icon: "xls" }
-        ]
-      };
-    },
-    components: { YGrid, YToolbar }
-  }))
-  .add("Toolbar expanded filters", () => ({
-    template: `
-                <s-viewport :width="1700">
-                    <s-container header="Toolbar expanded filters" :width="1600">
-                        <section class="y-panel__block">
-                            <y-toolbar :expanded.sync="expanded" :exportTypes="exportTypes">
-                                <template slot="expanded-toolbar">
-                                    <h1>This is expanded toolbar</h1>
-                                </template>
-                                <template slot="custom-buttons">
-                                    <button class="y-grid-toolbar__button y-grid-toolbar__button--add-project"
-                                            title="Add New Project">Add New Project</button>
-                                    <button class="y-grid-toolbar__button y-grid-toolbar__button--add-task"
-                                            title="Add New Task">Add New Task</button>
-                                </template>
-                            </y-toolbar>
-                        </section>
-                    </s-container>
-                </s-viewport>
-            `,
-    data() {
-      return {
-        expanded: true,
-        exportTypes: [
-          { item: "csv", icon: "csv" },
-          { item: "xls", icon: "xls" }
-        ]
-      };
-    },
-    components: { YGrid, YToolbar }
-  }))
-  .add("Toolbar no filters", () => ({
-    template: `
-                <s-viewport :width="1700">
-                    <s-container header="Toolbar no filters" :width="1600">
-                        <section class="y-panel__block">
-                            <y-toolbar :expanded.sync="expanded" :exportTypes="exportTypes">
-                                <template slot="custom-buttons"><section></section></template>
-                            </y-toolbar>
-                        </section>
-                    </s-container>
-                </s-viewport>
-            `,
-    data() {
-      return {
-        expanded: true,
-        exportTypes: [
-          { item: "csv", icon: "csv" },
-          { item: "pdf", icon: "pdf" },
-          { item: "xls", icon: "xls" }
-        ]
-      };
-    },
-    components: { YGrid, YToolbar }
-  }))
-  .add("Toolbar no exports", () => ({
-    template: `
-                <s-viewport :width="1700">
-                    <s-container header="Toolbar no exports" :width="1600">
-                        <section class="y-panel__block">
-                            <y-toolbar :expanded.sync="expanded" :exportTypes="[]">
-                            <template slot="expanded-toolbar">
-                                <h1>This is expanded toolbar</h1>
-                            </template>
-                            <template slot="custom-buttons">
-                                <button class="y-grid-toolbar__button y-grid-toolbar__button--add-project"
-                                        title="Add New Project">Add New Project</button>
-                                <button class="y-grid-toolbar__button y-grid-toolbar__button--add-task"
-                                        title="Add New Task">Add New Task</button>
-                            </template>
-                            </y-toolbar>
-                        </section>
-                    </s-container>
-                </s-viewport>
-            `,
-    data() {
-      return {
-        expanded: false
-      };
-    },
     components: { YGrid, YToolbar }
   }));
+  // .add("Toolbar collapsed filters", () => ({
+  //   template: `
+  //               <s-viewport :width="1700">
+  //                   <s-container header="Toolbar collapsed filters" :width="1600">
+  //                       <section class="y-panel__block">
+  //                           <y-toolbar :expanded.sync="expanded" :exportTypes="exportTypes">
+  //                               <template slot="expanded-toolbar">
+  //                                   <h1>This is expanded toolbar</h1>
+  //                               </template>
+  //                               <template slot="custom-buttons">
+  //                                   <button class="y-grid-toolbar__button y-grid-toolbar__button--add-project"
+  //                                           title="Add New Project">Add New Project</button>
+  //                                   <button class="y-grid-toolbar__button y-grid-toolbar__button--add-task"
+  //                                           title="Add New Task">Add New Task</button>
+  //                               </template>
+  //                           </y-toolbar>
+  //                       </section>
+  //                   </s-container>
+  //               </s-viewport>
+  //           `,
+  //   data() {
+  //     return {
+  //       expanded: false,
+  //       exportTypes: [
+  //         { item: "csv", icon: "csv" },
+  //         { item: "xls", icon: "xls" }
+  //       ]
+  //     };
+  //   },
+  //   components: { YGrid, YToolbar }
+  // }))
+  // .add("Toolbar expanded filters", () => ({
+  //   template: `
+  //               <s-viewport :width="1700">
+  //                   <s-container header="Toolbar expanded filters" :width="1600">
+  //                       <section class="y-panel__block">
+  //                           <y-toolbar :expanded.sync="expanded" :exportTypes="exportTypes">
+  //                               <template slot="expanded-toolbar">
+  //                                   <h1>This is expanded toolbar</h1>
+  //                               </template>
+  //                               <template slot="custom-buttons">
+  //                                   <button class="y-grid-toolbar__button y-grid-toolbar__button--add-project"
+  //                                           title="Add New Project">Add New Project</button>
+  //                                   <button class="y-grid-toolbar__button y-grid-toolbar__button--add-task"
+  //                                           title="Add New Task">Add New Task</button>
+  //                               </template>
+  //                           </y-toolbar>
+  //                       </section>
+  //                   </s-container>
+  //               </s-viewport>
+  //           `,
+  //   data() {
+  //     return {
+  //       expanded: true,
+  //       exportTypes: [
+  //         { item: "csv", icon: "csv" },
+  //         { item: "xls", icon: "xls" }
+  //       ]
+  //     };
+  //   },
+  //   components: { YGrid, YToolbar }
+  // }))
+  // .add("Toolbar no filters", () => ({
+  //   template: `
+  //               <s-viewport :width="1700">
+  //                   <s-container header="Toolbar no filters" :width="1600">
+  //                       <section class="y-panel__block">
+  //                           <y-toolbar :expanded.sync="expanded" :exportTypes="exportTypes">
+  //                               <template slot="custom-buttons"><section></section></template>
+  //                           </y-toolbar>
+  //                       </section>
+  //                   </s-container>
+  //               </s-viewport>
+  //           `,
+  //   data() {
+  //     return {
+  //       expanded: true,
+  //       exportTypes: [
+  //         { item: "csv", icon: "csv" },
+  //         { item: "pdf", icon: "pdf" },
+  //         { item: "xls", icon: "xls" }
+  //       ]
+  //     };
+  //   },
+  //   components: { YGrid, YToolbar }
+  // }))
+  // .add("Toolbar no exports", () => ({
+  //   template: `
+  //               <s-viewport :width="1700">
+  //                   <s-container header="Toolbar no exports" :width="1600">
+  //                       <section class="y-panel__block">
+  //                           <y-toolbar :expanded.sync="expanded" :exportTypes="[]">
+  //                           <template slot="expanded-toolbar">
+  //                               <h1>This is expanded toolbar</h1>
+  //                           </template>
+  //                           <template slot="custom-buttons">
+  //                               <button class="y-grid-toolbar__button y-grid-toolbar__button--add-project"
+  //                                       title="Add New Project">Add New Project</button>
+  //                               <button class="y-grid-toolbar__button y-grid-toolbar__button--add-task"
+  //                                       title="Add New Task">Add New Task</button>
+  //                           </template>
+  //                           </y-toolbar>
+  //                       </section>
+  //                   </s-container>
+  //               </s-viewport>
+  //           `,
+  //   data() {
+  //     return {
+  //       expanded: false
+  //     };
+  //   },
+  //   components: { YGrid, YToolbar }
+  // }));

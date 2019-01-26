@@ -10,33 +10,42 @@
 
         </y-toolbar>
 
-        <y-table :data="data"
-                 :columns="columns"
-                 :hiddenColumns.sync="hiddenColumns"
+        <el-table
+                :data="data"
+                highlight-current-row
+                stripe
+                border
+                @header-dragend="colChange"
+                header-cell-class-name="y-el-table__header"
+                cell-class-name="y-el-table__sell"
+                ref="table"
         >
-            <template slot="expanded">
-                <slot name="expand"></slot>
-            </template>
-            <template slot="custom-column-template">
-                <el-table-column
-                        v-for="column in filteredEvents"
-                        :key="column.prop"
-                        :prop="column.prop"
-                        :label="column.label"
-                >
-                    <template slot-scope="{ row }">
-                        <slot v-if="$scopedSlots[`${column.prop}-column-template`]"
-                              :name="`${column.prop}-column-template`"
-                              :row="row"
-                        >
-                        </slot>
-                        <span v-else>
+            <el-table-column v-if="$slots.expand" type="expand">
+                <template slot-scope="row">
+                    <slot name="expand"></slot>
+                </template>
+            </el-table-column>
+
+            <el-table-column
+                    v-for="column in filteredEvents"
+                    :key="column.prop"
+                    :prop="column.prop"
+                    :label="column.label"
+                    :width="column.width"
+            >
+                <template slot-scope="{ row }">
+                    <slot v-if="$scopedSlots[`${column.prop}-column-template`]"
+                          :name="`${column.prop}-column-template`"
+                          :row="row"
+                    >
+                    </slot>
+                    <span v-else>
                         {{ row[column.prop] }}
                     </span>
-                    </template>
-                </el-table-column>
-            </template>
-        </y-table>
+                </template>
+            </el-table-column>
+
+        </el-table>
 
         <y-pagination
                 :total="100"

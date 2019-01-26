@@ -1,6 +1,5 @@
 import YPagination from './pagination/Pagination.vue';
 import YToolbar from './toolbar/Toolbar.vue';
-import YTable from './table/Table.vue';
 
 import { save, load, remove } from './src/local-storage';
 
@@ -34,6 +33,21 @@ export default {
       default: () => [{ item: 'csv', icon: 'csv' }, { item: 'xls', icon: 'xls' }],
     },
   },
+  methods: {
+    colChange() {
+      setTimeout(() => {
+        const applyTableColWidths = [];
+        const applyTableColGroup = this.$refs.table.$el.getElementsByTagName('colgroup')[0];
+        const applyTableCol = applyTableColGroup.getElementsByTagName('col');
+
+        let index = this.$slots.expand || this.$scopedSlots.expand ? 1 : 0;
+        for (index; index < applyTableCol.length; index++) {
+          applyTableColWidths.push(applyTableCol[index].width);
+        }
+        save(`grid-${this.name}-col-size`, applyTableColWidths);
+      }, 100);
+    },
+  },
   computed: {
     filteredEvents() {
       return this.columns.filter(column => {
@@ -44,7 +58,11 @@ export default {
   },
   mounted() {
     const hiddenColumns = load(`grid-${this.name}-col-visible`);
+    const tableWidth = load(`grid-${this.name}-col-size`);
     this.hiddenColumns = hiddenColumns;
+    for (let i = 0; i < this.columns.length; i++) {
+      this.columns[i].width = tableWidth[i];
+    }
     remove(`grid-${this.name}-col-visible`);
   },
   watch: {
@@ -52,5 +70,5 @@ export default {
       save(`grid-${this.name}-col-visible`, this.hiddenColumns);
     },
   },
-  components: { YPagination, YToolbar, YTable },
+  components: { YPagination, YToolbar },
 };
