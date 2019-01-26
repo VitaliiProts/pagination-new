@@ -18,6 +18,14 @@
   position: relative;
   border: 1px solid #ccc;
   background-color: #e8e8e8;
+  &__checkbox-group {
+    > .el-checkbox-group {
+      > .el-checkbox {
+        display: flex;
+        margin-left: 0;
+      }
+    }
+  }
   &__block {
     display: flex;
     flex-wrap: wrap;
