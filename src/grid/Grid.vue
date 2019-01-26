@@ -1,17 +1,21 @@
 <template>
     <section>
         <y-toolbar
+                v-if="showToolbar"
                 :expanded.sync="expanded"
                 :exportTypes="exportTypes"
                 :columns="columns"
                 :hiddenColumns.sync="hiddenColumns"
-                v-if="showToolbar"
+                :expandedRows.sync="scopeExpandedRows"
+                :data="data"
         >
 
         </y-toolbar>
 
         <el-table
                 :data="data"
+                :expand-row-keys="scopeExpandedRows"
+                row-key="id"
                 highlight-current-row
                 stripe
                 border
@@ -20,7 +24,7 @@
                 cell-class-name="y-el-table__sell"
                 ref="table"
         >
-            <el-table-column v-if="$slots.expand" type="expand">
+            <el-table-column v-if="$scopedSlots.expand || $slots.expand" type="expand">
                 <template slot-scope="row">
                     <slot name="expand"></slot>
                 </template>

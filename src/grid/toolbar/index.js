@@ -3,9 +3,14 @@ export default {
     return {
       show: this.expanded,
       checked: [],
+      showButtonExpand: true,
+      scopeExpandedRows: this.expandedRows,
     };
   },
   props: {
+    expandedRows: {
+      type: Array,
+    },
     exportTypes: {
       type: Array,
       default: [
@@ -28,6 +33,16 @@ export default {
     },
   },
   methods: {
+    clickExpand() {
+      this.showButtonExpand = false;
+      for (let i = 0; i < this.data.length; i++) {
+        this.expandedRows.push(this.data[i].id);
+      }
+    },
+    clickCollapse() {
+      this.showButtonExpand = true;
+      this.$emit('update:expandedRows', (this.scopeExpandedRows = []));
+    },
     expand() {
       this.$emit('update:expanded', (this.show = !this.show));
     },

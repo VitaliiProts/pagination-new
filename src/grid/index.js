@@ -10,9 +10,14 @@ export default {
       currentPage: 1,
       expanded: false,
       hiddenColumns: [],
+      scopeExpandedRows: this.expandedRows,
     };
   },
   props: {
+    expandedRows: {
+      type: Array,
+      default: () => [],
+    },
     name: {
       type: String,
       required: true,

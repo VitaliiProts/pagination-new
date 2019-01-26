@@ -38,6 +38,10 @@
                     <button class="y-grid-toolbar__button y-grid-toolbar__button--clear-filters"
                             title="Clear Filters">
                     </button>
+                    <transition name="fade" mode="out-in">
+                        <button v-if="this.showButtonExpand" @click="clickExpand" key="expand" class="y-grid-toolbar__button">{{ 'Expand' }}</button>
+                        <button v-else @click="clickCollapse" key="collapse" class="y-grid-toolbar__button">{{ 'Collapse' }}</button>
+                    </transition>
                 </section>
             </slot>
             <section class="y-grid-toolbar__block">
@@ -46,6 +50,7 @@
             <section class="y-grid-toolbar__block y-grid-toolbar__block--export">
                 <slot name="export-types">
                     <button v-for="exports in exportTypes"
+                            :key="exports.item"
                             :class="['y-grid-toolbar__button', `y-grid-toolbar__button--${exports.icon}`]"
                     >
                         {{ 'Export to ' + exports.item }}
