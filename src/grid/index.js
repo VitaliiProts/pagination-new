@@ -2,6 +2,8 @@ import YPagination from './pagination/Pagination.vue';
 import YToolbar from './toolbar/Toolbar.vue';
 import YTable from './table/Table.vue';
 
+import { save, load, remove } from './src/local-storage';
+
 export default {
   data() {
     return {
@@ -41,19 +43,13 @@ export default {
     },
   },
   mounted() {
-    const visibleColumns = localStorage.getItem(this.name);
-    if (visibleColumns) {
-      try {
-        this.hiddenColumns = JSON.parse(visibleColumns);
-      } catch (e) {
-        localStorage.removeItem(this.name);
-      }
-    }
+    const hiddenColumns = load(`grid-${this.name}-col-visible`);
+    this.hiddenColumns = hiddenColumns;
+    remove(`grid-${this.name}-col-visible`);
   },
   watch: {
     hiddenColumns() {
-      const parsed = JSON.stringify(this.hiddenColumns);
-      localStorage.setItem(this.name, parsed);
+      save(`grid-${this.name}-col-visible`, this.hiddenColumns);
     },
   },
   components: { YPagination, YToolbar, YTable },

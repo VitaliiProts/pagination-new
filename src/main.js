@@ -9,4 +9,4 @@ Vue.use(ElementUI, { locale });
 new Vue({
   el: '#app',
   render: h => h(App)
-})
+});
