@@ -21,7 +21,8 @@
                 <el-table-column
                         v-for="column in filteredEvents"
                         :key="column.prop"
-                        v-bind="column"
+                        :prop="column.prop"
+                        :label="column.label"
                 >
                     <template slot-scope="{ row }">
                         <slot v-if="$scopedSlots[`${column.prop}-column-template`]"

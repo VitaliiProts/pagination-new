@@ -3,8 +3,10 @@
             :data="data"
             highlight-current-row
             stripe
+            border
             header-cell-class-name="y-el-table__header"
             cell-class-name="y-el-table__sell"
+            ref="table"
     >
         <el-table-column v-if="$slots.expanded" type="expand">
             <template slot-scope="row">
