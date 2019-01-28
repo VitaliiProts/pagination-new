@@ -39,14 +39,16 @@ export default {
     },
   },
   methods: {
-    colChange() {
+    colChange(newWidth, oldWidth, column, event) {
       setTimeout(() => {
+        console.log(newWidth, oldWidth, column, event)
+
         const applyTableColWidths = [];
         const applyTableColGroup = this.$refs.table.$el.getElementsByTagName('colgroup')[0];
         const applyTableCol = applyTableColGroup.getElementsByTagName('col');
 
         let index = this.$slots.expand || this.$scopedSlots.expand ? 1 : 0;
-        for (index; index < applyTableCol.length; index++) {
+        for (index; index < applyTableCol.length - 1; index++) {
           applyTableColWidths.push(applyTableCol[index].width);
         }
         save(`grid-${this.name}-col-size`, applyTableColWidths);
@@ -72,6 +74,17 @@ export default {
   },
   watch: {
     hiddenColumns() {
+      const arr = [];
+      const calculateWidthTable = Math.round((this.$refs.table.$el.clientWidth - 50)  / this.filteredEvents.length);
+      for (let i = 0; i < this.filteredEvents.length; i++) {
+        arr.push(calculateWidthTable);
+      }
+
+      for (let i = 0; i < this.columns.length; i++) {
+        this.columns[i].width = calculateWidthTable;
+      }
+
+      save(`grid-${this.name}-col-size`, arr);
       save(`grid-${this.name}-col-visible`, this.hiddenColumns);
     },
   },
