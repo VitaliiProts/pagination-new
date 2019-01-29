@@ -1,7 +1,7 @@
 import YPagination from './pagination/Pagination.vue';
 import YToolbar from './toolbar/Toolbar.vue';
 
-import { save, load, remove } from './src/local-storage';
+import { save, load, remove } from './local-storage';
 
 export default {
   data() {
