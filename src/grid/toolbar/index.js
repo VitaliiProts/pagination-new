@@ -5,13 +5,9 @@ export default {
       checked: [],
       showButtonExpand: true,
       scopeExpandedRows: this.expandedRows,
-      formTheadOptions: ['title', 'description', 'created', 'action']
     };
   },
   props: {
-    filter: {
-      type: Object,
-    },
     expandedRows: {
       type: Array,
     },
@@ -53,10 +49,7 @@ export default {
   },
   watch: {
     checked() {
-      
       this.$emit('update:hiddenColumns', this.checked);
-      // this.filterLocal = this.formTheadOptions.filter(i => e.indexOf(i) >= 0)
-      // console.log(e);
     },
     hiddenColumns() {
       this.checked = this.hiddenColumns;
