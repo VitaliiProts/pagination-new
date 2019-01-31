@@ -8,6 +8,7 @@
                 :hiddenColumns.sync="hiddenColumns"
                 :expandedRows.sync="scopeExpandedRows"
                 :data="data"
+                :columnHelper="columnHelper"
         >
 
         </y-toolbar>
