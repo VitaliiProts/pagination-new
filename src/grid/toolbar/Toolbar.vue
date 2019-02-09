@@ -23,7 +23,10 @@
                                 <b>{{ 'Hide columns:' }}</b>
                               <div class="y-grid-toolbar__checkbox-group">
                                 <el-checkbox-group v-model="checked">
-                                    <el-checkbox v-for="column in columns" :label="column.prop" :key="column.prop">
+                                    <el-checkbox v-for="column in columns"
+                                                :label="column.prop"
+                                                :key="column.prop"
+                                                :disabled="column.prop === columns[columns.length - 1].prop ? true : false">
                                         {{ column.label }}
                                     </el-checkbox>
                                 </el-checkbox-group>

@@ -122,8 +122,7 @@ storiesOf("Lib/Grid", "GridTable")
           tasks: [
             {
               prop: "priority",
-              label: "#",
-              width: "50"
+              label: "#"
             },
             {
               prop: "task",

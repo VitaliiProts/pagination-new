@@ -1,8 +1,7 @@
 import YPagination from './pagination/Pagination.vue';
 import YToolbar from './toolbar/Toolbar.vue';
 
-import { save, load, remove } from './local-storage';
-import Columns from './src/column-helper';
+import { save, load } from './local-storage';
 
 export default {
   data() {
@@ -41,75 +40,49 @@ export default {
     },
   },
   methods: {
-    colChange() {
-      // 1. Викликаємо метод хелпера (recalculateWidth) і він актуалізує дані про ширини в tableColumns
-      // 2. Сетимо tableColumns в даному компоненті
-      
+    colChange(newWidth, oldWidth, column) {
+      const property = column.property;
       setTimeout(() => {
-        this.columnHelper.resizeColumn(this.filteredEvents ,this.$slots, this.$scopedSlots);
+        const applyTableColWidths = [];
+        const applyTableColGroup = this.$refs.table.$el.getElementsByTagName('colgroup')[0];
+        const applyTableCol = applyTableColGroup.getElementsByTagName('col');
 
-        // const applyTableColWidths = [];
-        // const applyTableColGroup = this.$refs.table.$el.getElementsByTagName('colgroup')[0];
-        // const applyTableCol = applyTableColGroup.getElementsByTagName('col');
+        this.filteredEvents.forEach((items, i) => {
+          const item = items;
+          if (property === item.prop) {
+            if (this.$scopedSlots.expand || this.$slots.expand) {
+              item.width =
+                property === this.columns[this.columns.length - 1].prop
+                  ? null
+                  : applyTableCol[i + 1].width;
+                } else {
+                  item.width = applyTableCol[i].width;
+                }
+            }
+            applyTableColWidths.push(item.width);
+        });
 
-        // let index = this.$slots.expand || this.$scopedSlots.expand ? 1 : 0;
-        // for (index; index < applyTableCol.length - 1; index++) {
-        //   applyTableColWidths.push(applyTableCol[index].width);
-        // }
-        // save(`grid-${this.name}-col-size`, applyTableColWidths);
+        save(`grid-${this.name}-col-size`, applyTableColWidths);
       }, 100);
     },
   },
   computed: {
     filteredEvents() {
-      if (!this.columnHelper) {
-        this.columnHelper = new Columns(this.$refs.table, this.name, this.columns);
-      }
-        return this.columnHelper.getVisibleColumns();
+      return this.columns.filter(column => !this.hiddenColumns.includes(column.prop));
     },
   },
   mounted() {
-    // 1. Створюємо хелпер, в конструкторі хелпера достаємо дані з локал сторейджа про приховані колонки та про ширини колонок
-    //    та формуємо список колонок  tableColumns
-    // 2. Сетимо tableColumns в даному компоненті
-
-
-    this.columnHelper = new Columns(this.$refs.table, this.name, this.columns);
-    // const hiddenColumns = load(`grid-${this.name}-col-visible`);
-    this.columnHelper.setColWidth();
-    // this.columnHelper.setColWidth();
-    // const tableWidth = load(`grid-${this.name}-col-size`);
-    // this.hiddenColumns = hiddenColumns;
-    // for (let i = 0; i < this.columns.length; i++) {
-    //   this.columns[i].width = tableWidth[i];
-    // }
-    // remove(`grid-${this.name}-col-visible`);
+    const hiddenColumns = load(`grid-${this.name}-col-visible`);
+    const tableColSize = load(`grid-${this.name}-col-size`);
+    this.hiddenColumns = hiddenColumns;
+    for (let i = 0; i < this.filteredEvents.length; i++) {
+      this.filteredEvents[i].width = tableColSize[i];
+    }
   },
   watch: {
-    hiddenColumns() {      
-      // 1. Передати в хелпер нові приховані колонки (updateHiddenColumns).
-      //    В цей момент хелпер перекалькулює внутрішню змінну tableColumns
-      // 2. Засетити змінну таблеКолумнс в даному гріді на значення повернуте з хелпера
-
-
-
-
-      // this.columnHelper.showHideColumn(this.hiddenColumns);
-      // console.log(`GRID ${this.filteredEvents}`);
-
-      // console.log(this.filteredEvents);
-      // const arr = [];
-      // const calculateWidthTable = Math.round((this.$refs.table.$el.clientWidth - 50)  / this.filteredEvents.length);
-      // for (let i = 0; i < this.filteredEvents.length; i++) {
-      //   arr.push(calculateWidthTable);
-      // }
-
-      // for (let i = 0; i < this.columns.length; i++) {
-      //   this.columns[i].width = calculateWidthTable;
-      // }
-
-      // save(`grid-${this.name}-col-size`, arr);
-      // save(`grid-${this.name}-col-visible`, this.hiddenColumns);
+    hiddenColumns() {
+      this.colChange(null, null, this.hiddenColumns);
+      save(`grid-${this.name}-col-visible`, this.hiddenColumns);
     },
   },
   components: { YPagination, YToolbar },

@@ -37,6 +37,7 @@
                     :prop="column.prop"
                     :label="column.label"
                     :width="column.width"
+                    :resizable="column.prop === filteredEvents[filteredEvents.length - 1].prop ? false : true"
             >
                 <template slot-scope="{ row }">
                     <slot v-if="$scopedSlots[`${column.prop}-column-template`]"
