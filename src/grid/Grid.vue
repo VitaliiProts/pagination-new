@@ -26,7 +26,7 @@
                 ref="table"
         >
             <el-table-column v-if="$scopedSlots.expand || $slots.expand" type="expand">
-                <template slot-scope="row">
+                <template>
                     <slot name="expand"></slot>
                 </template>
             </el-table-column>
